@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardápio Digital Garça Beach Club</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuração do Tailwind CSS e importação da fonte Inter -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8"
+    style="background-color: #1c6b44"
+  >
+    <!-- Cabeçalho do Cardápio -->
+    <header
+      class="w-full max-w-4xl flex items-center justify-between mb-10 p-6 bg-white rounded-2xl shadow-xl"
+    >
+      <!-- O logotipo agora é diretamente a imagem com as classes para ser circular e ter sombra -->
+      <img
+        src="img/icon.png"
+        alt="Logo Garça Beach Club"
+        class="w-32 h-32 object-cover block shadow-lg flex-shrink-0"
+      />
+
+      <!-- Títulos - centralizados no espaço restante -->
+      <div class="flex-grow text-center ml-4">
+        <!-- ml-4 adiciona espaçamento entre o logo e o texto -->
+        <h1
+          class="text-5xl font-extrabold text-green-800 mb-2 leading-tight uppercase"
+        >
+          CARDÁPIO DIGITAL
+        </h1>
+        <h2 class="text-3xl font-bold text-gray-700 uppercase">
+          GARÇA BEACH CLUB
+        </h2>
+      </div>
+    </header>
+
+    <!-- Seções do Cardápio -->
+    <main
+      id="menu-content"
+      class="w-full max-w-4xl grid gap-8 md:grid-cols-2 lg:grid-cols-2"
+    >
+      <!-- O conteúdo do menu será gerado aqui pelo JavaScript -->
+    </main>
+
+    <!-- Rodapé -->
+    <footer
+      class="w-full max-w-4xl mt-12 p-6 rounded-2xl shadow-xl flex justify-center items-center"
+      style="background-color: #e6eee9"
+    >
+      <p class="w-full text-center text-sm uppercase" style="color: #1c6b44">
+        &copy; 2024 GARÇA BEACH TENNIS. TODOS OS DIREITOS RESERVADOS.
+      </p>
+    </footer>
+
+    <script>
+      // Dados do cardápio
+      const menuData = [
+        {
+          category: "COMIDAS",
+          items: [
+            { name: "PÃO DE QUEIJO", size: "UNIDADE", price: "7,00" },
+            { name: "MINI PIZZA QUEIJO", size: "UNIDADE", price: "10,00" },
+            { name: "MINI PIZZA CALABRESA", size: "UNIDADE", price: "10,00" },
+            { name: "BATATA FRITA", size: "PORÇÃO", price: "35,00" },
+            { name: "TORRESMO", size: "PORÇÃO", price: "35,00" },
+            { name: "KIBE FRITO", size: "PORÇÃO", price: "40,00" },
+            { name: "FRIOS", size: "PORÇÃO", price: "50,00" },
+            { name: "FRANGO ACEBOLADO", size: "PORÇÃO", price: "40,00" },
+            { name: "CARNE ACEBOLADA", size: "PORÇÃO", price: "50,00" },
+            { name: "CALABRESA ACEBOLADA", size: "PORÇÃO", price: "35,00" },
+          ],
+        },
+        {
+          category: "BEBIDAS",
+          items: [
+            { name: "CAFÉ COADO", price: "3,00" },
+            { name: "ÁGUA SEM GÁS", price: "3,00" },
+            { name: "ÁGUA COM GÁS", price: "5,00" },
+            { name: "ÁGUA DE COCO", price: "15,00" },
+            { name: "REFRIGERANTE", size: "LATA", price: "6,00" },
+            { name: "SUCO", price: "6,00" },
+            { name: "GATORADE", price: "10,00" },
+            { name: "ENERGÉTICO", price: "15,00" },
+            { name: "HEINEKEN", size: "LONGNECK", price: "10,00" },
+            { name: "PRAYA", size: "LONGNECK", price: "10,00" },
+            { name: "AMSTEL ULTRA", size: "LONGNECK", price: "10,00" },
+            { name: "STELLA", size: "LONGNECK", price: "12,00" },
+            { name: "CORONA", size: "LONGNECK", price: "12,00" },
+          ],
+        },
+      ];
+
+      // Função para criar um item do menu
+      function createMenuItem(item) {
+        const itemDiv = document.createElement("div");
+        itemDiv.className =
+          "flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0";
+
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "flex flex-col";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "text-lg font-semibold text-gray-800";
+        nameSpan.textContent = item.name;
+        infoDiv.appendChild(nameSpan);
+
+        if (item.size) {
+          const sizeSpan = document.createElement("span");
+          sizeSpan.className = "text-sm text-gray-600";
+          sizeSpan.textContent = item.size;
+          infoDiv.appendChild(sizeSpan);
+        }
+
+        const priceSpan = document.createElement("span");
+        priceSpan.className = "text-lg font-bold text-orange-600";
+        priceSpan.textContent = `R$ ${item.price}`;
+
+        itemDiv.appendChild(infoDiv);
+        itemDiv.appendChild(priceSpan);
+
+        return itemDiv;
+      }
+
+      // Função para criar uma categoria do menu
+      function createMenuCategory(categoryData) {
+        const categoryDiv = document.createElement("div");
+        categoryDiv.className =
+          "mb-8 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300";
+        categoryDiv.style.backgroundColor = "#e6eee9"; // Fundo do quadro
+
+        const title = document.createElement("h2");
+        title.className =
+          "text-3xl font-extrabold text-center text-orange-600 mb-6 pb-2 border-b-2 border-orange-200";
+        title.textContent = categoryData.category;
+        categoryDiv.appendChild(title);
+
+        const itemsContainer = document.createElement("div");
+        categoryData.items.forEach((item) => {
+          itemsContainer.appendChild(createMenuItem(item));
+        });
+        itemsContainer.classList.add("space-y-2"); // Adiciona espaço entre os itens
+        categoryDiv.appendChild(itemsContainer);
+
+        return categoryDiv;
+      }
+
+      // Renderiza o menu quando o DOM estiver completamente carregado
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuContent = document.getElementById("menu-content");
+        menuData.forEach((category) => {
+          menuContent.appendChild(createMenuCategory(category));
+        });
+      });
+    </script>
+  </body>
+</html>
