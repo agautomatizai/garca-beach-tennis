@@ -23,15 +23,17 @@
       class="w-full max-w-4xl flex items-center justify-between mb-10 p-6 bg-white rounded-2xl shadow-xl"
     >
       <!-- O logotipo agora é diretamente a imagem com as classes para ser circular e ter sombra -->
+      <!-- Adicionado 'hidden md:block' para ocultar em telas pequenas e mostrar a partir de telas médias -->
       <img
         src="img/icon.png"
         alt="Logo Garça Beach Club"
-        class="w-32 h-32 object-cover block shadow-lg flex-shrink-0"
+        class="w-32 h-32 rounded-full object-cover shadow-lg flex-shrink-0 hidden md:block"
       />
 
       <!-- Títulos - centralizados no espaço restante -->
-      <div class="flex-grow text-center ml-4">
-        <!-- ml-4 adiciona espaçamento entre o logo e o texto -->
+      <!-- Em telas pequenas, o ml-4 pode ser desnecessário se não houver logo -->
+      <div class="flex-grow text-center md:ml-4">
+        <!-- Ajustado ml-4 para md:ml-4 para responsividade -->
         <h1
           class="text-5xl font-extrabold text-green-800 mb-2 leading-tight uppercase"
         >
